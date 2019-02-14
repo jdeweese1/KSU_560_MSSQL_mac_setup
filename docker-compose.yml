@@ -1,0 +1,16 @@
+version: "3"
+services:
+  tsql_db:
+    container_name: tsql
+    ports:
+      - "1433:1433"
+    image: mcr.microsoft.com/mssql/server:2019-CTP2.1-ubuntu
+    environment:
+      - 'ACCEPT_EULA=Y' # get from shell, direnv?
+      - 'SA_PASSWORD=fooPass123!'
+      - 'MSSQL_SA_PASSWORD=fooPass123!'
+
+
+volumes:
+  tsql-data:
+
