@@ -26,7 +26,7 @@ This is reccomended, but probably not required. I won't gurantee using bash won'
 
 __Install Azure Data Studio__
 
-Run `$ brew cask install azure-data-studio` or download from [Microsoft](https://docs.microsoft.com/en-us/sql/azure-data-studio/download?view=sql-server-2017).
+Run `$ brew cask install azure-data-studio` or download from [Microsoft](https://docs.microsoft.com/en-us/sql/azure-data-studio/download?view=sql-server-2017) or run `$ wget https://azuredatastudiobuilds.blob.core.windows.net/releases/1.4.5/azuredatastudio-macos-1.4.5.zip`.
 
 1. Clone this repo
 
