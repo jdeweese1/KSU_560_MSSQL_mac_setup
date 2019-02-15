@@ -8,7 +8,7 @@ __Install homebrew (optional)__
 
 __Install docker__
 
-Use `$ brew cask install docker` or download from [Docker Website](https://hub.docker.com/editions/community/docker-ce-desktop-mac)
+Use `$ brew cask install docker` or download from [Docker Website](https://hub.docker.com/editions/community/docker-ce-desktop-mac).
 
 
 
@@ -26,21 +26,19 @@ This is reccomended, but probably not required. I won't gurantee using bash won'
 
 __Install Azure Data Studio__
 
-`$ brew cask install azure-data-studio` or download from [Microsoft](https://docs.microsoft.com/en-us/sql/azure-data-studio/download?view=sql-server-2017)
+Run `$ brew cask install azure-data-studio` or download from [Microsoft](https://docs.microsoft.com/en-us/sql/azure-data-studio/download?view=sql-server-2017).
 
 1. Clone this repo
 
    `$ git clone FOO`
 
-2. Make sure the `docker-compose.yml` file is in the folder
-
 3. run `docker-compose run tsql_db`
 
-   this may take a while the first time ~ 5 minutes depending on your internet connection
+   This may take a while the first time ~ 5 minutes depending on your internet connection
 
 5. echo "$$MSSQL_SA_PASSWORD" that gives you something FIXME
 
-```
+```Bash
    sudo docker exec -it tsql /opt/mssql-tools/bin/sqlcmd 
     -S localhost -U SA -P '88285MSSQL_' -Q 'ALTER LOGIN SA WITH PASSWORD=SA_PASSWORD="fooPass123!"'
 ```
@@ -55,8 +53,10 @@ __Install Azure Data Studio__
    $ wget https://github.com/Microsoft/sql-server-samples/releases/download/wide-world-importers-v1.0/WideWorldImporters-Standard.bak
    $ mv WideWorldImporters-Standard wwi.bak
    ```
+   
    In a terminal shell outside of the docker container run this:
-   `docker container ls` get the name it gives you FOO
+   
+   `$ docker container ls` get the name it gives you FOO
 
 7. Enter the TSQL shell
    
@@ -67,7 +67,9 @@ __Install Azure Data Studio__
    Now that you are in the TSQL shell run the following to create a non admin account for yourself run the following:
    
    ```CREATE LOGIN <username> WITH PASSWORD = 'fooPass123'
-      GO``` FOO
+      GO```
+      
+      FIXME
 
 9. Connecting to database engine with Azure Data Studio
 
@@ -76,8 +78,9 @@ __Install Azure Data Studio__
    `docker-compose up`
 
    Open Azure Data Studio
-
-   login with <username> 127.0.0.1
+   
+   Connect to 127.0.0.1
+   login with <username> 
 
    change setting to enable preview features to True
 
