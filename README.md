@@ -36,7 +36,7 @@ Run `$ brew cask install azure-data-studio` or download from [Microsoft](https:/
 
    This may take a while the first time ~ 5 minutes depending on your internet connection
 
-5. echo "$$MSSQL_SA_PASSWORD" that gives you something FIXME
+5. echo `$$MSSQL_SA_PASSWORD` that gives you something FIXME
 
 ```Bash
    sudo docker exec -it tsql /opt/mssql-tools/bin/sqlcmd 
