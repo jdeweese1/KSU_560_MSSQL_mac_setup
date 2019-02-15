@@ -66,8 +66,10 @@ Run `$ brew cask install azure-data-studio` or download from [Microsoft](https:/
    
    Now that you are in the TSQL shell run the following to create a non admin account for yourself run the following:
    
-   ```CREATE LOGIN <username> WITH PASSWORD = 'fooPass123'
-      GO```
+   ```Bash
+      CREATE LOGIN <username> WITH PASSWORD = 'fooPass123'
+      GO
+      ```
       
       FIXME
 
