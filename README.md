@@ -1,62 +1,81 @@
-Install docker
-`brew cask install docker`
+# How to use the MSSQL engine on macOS using Docker
 
-Install homebrew (optional)
-`/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
+## Prerequisites
 
-Install iTerm2 (optional)
-`brew cask install iterm2`
+__Install homebrew (optional)__
 
-Install Oh-My-Zsh for iTerm (optional)
+`$ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
+
+__Install docker__
+
+Use `$ brew cask install docker` or download from [Docker Website](https://hub.docker.com/editions/community/docker-ce-desktop-mac)
+
+
+
+__Install iTerm2 (optional)__
+
+Not required, but may make your life easier.
+
+`$ brew cask install iterm2` or download from [iTerm website](https://iterm2.com/downloads.html)
+
+__Install Oh-My-Zsh for iTerm (optional)__
+
+This is reccomended, but probably not required. I won't gurantee using bash won't break something later. 
+
 `sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
 
-Install Azure Data Studio
-`brew cask install azure-data-studio` or download from [Microsoft](https://docs.microsoft.com/en-us/sql/azure-data-studio/download?view=sql-server-2017) or `wget https://go.microsoft.com/fwlink/?linkid=2072737`
+__Install Azure Data Studio__
 
-1. create a folder 
+`$ brew cask install azure-data-studio` or download from [Microsoft](https://docs.microsoft.com/en-us/sql/azure-data-studio/download?view=sql-server-2017)
 
-   `mkdir tsql`
+1. Clone this repo
+
+   `$ git clone FOO`
 
 2. Make sure the `docker-compose.yml` file is in the folder
 
-   wget blah FOO 
-
-3. run `docker-compose build tsql_db`
-
-4. run `docker-compose run tsql_db`
+3. run `docker-compose run tsql_db`
 
    this may take a while the first time ~ 5 minutes depending on your internet connection
 
-5. echo "$$MSSQL_SA_PASSWORD" that gives you something FOO
+5. echo "$$MSSQL_SA_PASSWORD" that gives you something FIXME
 
 ```
    sudo docker exec -it tsql /opt/mssql-tools/bin/sqlcmd 
     -S localhost -U SA -P '88285MSSQL_' -Q 'ALTER LOGIN SA WITH PASSWORD=SA_PASSWORD="fooPass123!"'
 ```
 
-6. enter the bash prompt within the docker container 
-
-   `cd /var/backups/`
-
-   `wget https://github.com/Microsoft/sql-server-samples/releases/download/wide-world-importers-v1.0/WideWorldImporters-Standard.bak`
-
-   `mv WideWorldImporters-Standard wwi.bak` ## for convience
-
+6. Enter the bash prompt within the docker container 
+   `$ docker exec -it <container name here> "bash"`
+   
+   Now you should be in bash shell inside the docker container.
+   
+   ```Bash
+   $ cd /var/backups/
+   $ wget https://github.com/Microsoft/sql-server-samples/releases/download/wide-world-importers-v1.0/WideWorldImporters-Standard.bak
+   $ mv WideWorldImporters-Standard wwi.bak
+   ```
+   In a terminal shell outside of the docker container run this:
    `docker container ls` get the name it gives you FOO
 
-`docker exec -it <container name here> "bash"`
-
 7. Enter the TSQL shell
+   
+   Make sure you are in the bash shell inside the docker container and run the following to enter the interactive TSQL shell.
 
-   /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'fooPass123!'
+   `$ /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'fooPass123!'`
+   
+   Now that you are in the TSQL shell run the following to create a non admin account for yourself run the following:
+   
+   ```CREATE LOGIN <username> WITH PASSWORD = 'fooPass123'
+      GO``` FOO
 
-8. `CREATE LOGIN <username> WITH PASSWORD = 'fooPass123'
+9. Connecting to database engine with Azure Data Studio
 
-   GO` FOO
+   In the terminal not in a docker container the following:
+   
+   `docker-compose up`
 
-9. `docker-compose up`
-
-   now open Azure Data Studio
+   Open Azure Data Studio
 
    login with <username> 127.0.0.1
 
@@ -66,6 +85,6 @@ Install Azure Data Studio
 
    to restore go to script
 todo
-alias sqlcmd="/opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'fooPass123!'""
+
 find some way to export username and passwords out as shell variables and automagically call them
 make shell scripts to run the thing
