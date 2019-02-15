@@ -87,9 +87,19 @@ Run `$ brew cask install azure-data-studio` or download from [Microsoft](https:/
    change setting to enable preview features to True
 
    to reload use file /var/backups/wwi.bak
+   
+```RESTORE DATABASE [WWI] FROM DISK = N'/var/opt/mssql/data/wwi.bak'
+WITH MOVE 'WWI_Primary'  TO N'/var/opt/mssql/data/WWI.mdf', 
+MOVE 'WWI_UserData' TO N'/var/opt/mssql/data/WWI_UserData.ndf',
+MOVE 'WWI_Log' TO N'/var/opt/mssql/data/WWI.ldf',
+move 'wwi_inmemory_data_1' to N'/var/opt/mssql/data/WWI_InMemory.ndf'
+```
 
    to restore go to script
 todo
 
 find some way to export username and passwords out as shell variables and automagically call them
 make shell scripts to run the thing
+
+In the Azure Data Studio run the following
+
