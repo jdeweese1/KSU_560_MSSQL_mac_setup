@@ -86,20 +86,24 @@ Run `$ brew cask install azure-data-studio` or download from [Microsoft](https:/
 
    change setting to enable preview features to True
 
-   to reload use file /var/backups/wwi.bak
+10. Restore the database
+   In Azure Data Studio, go to open a new query tab, making sure you are on the `master` database. Make sure you copy the database file into the location `/var/opt/mssql/data/wwi.bak`. Execute the following query:
    
-```RESTORE DATABASE [WWI] FROM DISK = N'/var/opt/mssql/data/wwi.bak'
+```SQL 
+RESTORE DATABASE [WWI] FROM DISK = N'/var/opt/mssql/data/wwi.bak'
 WITH MOVE 'WWI_Primary'  TO N'/var/opt/mssql/data/WWI.mdf', 
 MOVE 'WWI_UserData' TO N'/var/opt/mssql/data/WWI_UserData.ndf',
 MOVE 'WWI_Log' TO N'/var/opt/mssql/data/WWI.ldf',
-move 'wwi_inmemory_data_1' to N'/var/opt/mssql/data/WWI_InMemory.ndf'
+MOVE 'wwi_inmemory_data_1' to N'/var/opt/mssql/data/WWI_InMemory.ndf'
+```
+It should take about 30 seconds for this to finish importing data.
+
+To verify that it succeeded run the following on the `WWI` database, and ensure there are 663 rows:
+```SQL
+   SELECT * 
+   FROM Sales.Customers
 ```
 
-   to restore go to script
-todo
 
 find some way to export username and passwords out as shell variables and automagically call them
 make shell scripts to run the thing
-
-In the Azure Data Studio run the following
-
