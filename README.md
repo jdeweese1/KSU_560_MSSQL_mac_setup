@@ -104,6 +104,7 @@ To verify that it succeeded run the following on the `WWI` database, and ensure 
    FROM Sales.Customers
 ```
 
-
-find some way to export username and passwords out as shell variables and automagically call them
-make shell scripts to run the thing
+TODO
+- find some way to export username and passwords out as shell variables and automagically call them
+   - direnv?
+- make shell scripts to run the thing
