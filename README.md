@@ -49,16 +49,13 @@ In your terminal run the following:
 
 6. Download the database dump
 
-   Enter the bash prompt within the docker container 
-   `$ docker exec -it <container name here> "bash"`
-   
-   You should now should be in a bash shell inside the docker container. Run the following: 
+   If this is your first time bringing up the project run the following to download the database dump:
    
    ```Bash
-   $ cd /var/backups/
    $ wget https://github.com/Microsoft/sql-server-samples/releases/download/wide-world-importers-v1.0/WideWorldImporters-Standard.bak
-   $ mv WideWorldImporters-Standard wwi.bak
-   $ cp wwi.bak /var/opt/mssql/data/wwi.bak
+   $ mv WideWorldImporters-Standard.bak wwi.bak
+   $ docker cp wwi.bak tsql:/var/opt/mssql/data/wwi.bak
+
    ```
    
    In a terminal shell outside of the docker container run the following:
