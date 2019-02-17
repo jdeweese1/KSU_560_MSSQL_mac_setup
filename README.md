@@ -11,7 +11,6 @@ __Install docker__
 Use `$ brew cask install docker` or download from [Docker Website](https://hub.docker.com/editions/community/docker-ce-desktop-mac).
 
 
-
 __Install iTerm2 (optional)__
 
 Not required, but may make your life easier.
@@ -22,45 +21,54 @@ __Install Oh-My-Zsh for iTerm (optional)__
 
 This is reccomended, but probably not required. I won't gurantee using bash won't break something later. 
 
-`sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
+`$ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
 
 __Install Azure Data Studio__
 
 Run `$ brew cask install azure-data-studio` or download from [Microsoft](https://docs.microsoft.com/en-us/sql/azure-data-studio/download?view=sql-server-2017) or run `$ wget https://azuredatastudiobuilds.blob.core.windows.net/releases/1.4.5/azuredatastudio-macos-1.4.5.zip`.
 
+## Instructions
 1. Clone this repo
 
-   `$ git clone FOO`
+   `$ git clone https://github.com/jdeweese1/KSU_560_MSSQL_mac_setup.git`
 
-3. run `docker-compose run tsql_db`
+3. Get docker up and running
+   In the location of the repo run the following:
+   `$ docker-compose run tsql_db`
 
    This may take a while the first time ~ 5 minutes depending on your internet connection
 
-5. echo `$$MSSQL_SA_PASSWORD` that gives you something FIXME
+5. Change the SA (SQL Admin) password
+In your terminal run the following:
+ `$ echo "$$MSSQL_SA_PASSWORD"` that gives you something the current admin password for the database. Using the output of this command, change the admin password to something more memorable.
 
 ```Bash
-   sudo docker exec -it tsql /opt/mssql-tools/bin/sqlcmd 
-    -S localhost -U SA -P '88285MSSQL_' -Q 'ALTER LOGIN SA WITH PASSWORD=SA_PASSWORD="fooPass123!"'
+   $ sudo docker exec -it tsql /opt/mssql-tools/bin/sqlcmd 
+    -S localhost -U SA -P 'output_of_echo_here' -Q 'ALTER LOGIN SA WITH PASSWORD=SA_PASSWORD="fooPass123!"'
 ```
 
-6. Enter the bash prompt within the docker container 
+6. Download the database dump
+
+   Enter the bash prompt within the docker container 
    `$ docker exec -it <container name here> "bash"`
    
-   Now you should be in bash shell inside the docker container.
+   You should now should be in a bash shell inside the docker container. Run the following: 
    
    ```Bash
    $ cd /var/backups/
    $ wget https://github.com/Microsoft/sql-server-samples/releases/download/wide-world-importers-v1.0/WideWorldImporters-Standard.bak
    $ mv WideWorldImporters-Standard wwi.bak
+   $ cp wwi.bak /var/opt/mssql/data/wwi.bak
    ```
    
-   In a terminal shell outside of the docker container run this:
+   In a terminal shell outside of the docker container run the following:
    
-   `$ docker container ls` get the name it gives you FOO
+   `$ docker container ls` 
+   This gives you the name of the docker container, which may be helpful later.
 
 7. Enter the TSQL shell
    
-   Make sure you are in the bash shell inside the docker container and run the following to enter the interactive TSQL shell.
+   In the bash shell inside the docker container, run the following to enter the interactive TSQL shell:
 
    `$ /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'fooPass123!'`
    
@@ -73,18 +81,18 @@ Run `$ brew cask install azure-data-studio` or download from [Microsoft](https:/
       
       FIXME
 
-9. Connecting to database engine with Azure Data Studio
+9. Connect to database engine with Azure Data Studio.
 
    In the terminal not in a docker container the following:
    
-   `docker-compose up`
+   `$ docker-compose up`
 
    Open Azure Data Studio
    
    Connect to 127.0.0.1
    login with <username> 
 
-   change setting to enable preview features to True
+   Change go to settings and change the setting "Enable Preview Features" to be on.
 
 10. Restore the database
    In Azure Data Studio, go to open a new query tab, making sure you are on the `master` database. Make sure you copy the database file into the location `/var/opt/mssql/data/wwi.bak`. Execute the following query:
