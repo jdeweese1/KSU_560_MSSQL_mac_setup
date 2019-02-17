@@ -1,0 +1,2 @@
+alias dcr='docker-compose run'
+alias dbash='dcr tsql_db bash'
