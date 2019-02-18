@@ -4,32 +4,32 @@
 
 __Install homebrew (optional)__
 
-`$ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
+   `$ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
 
 __Install docker__
 
-Use `$ brew cask install docker` or download from [Docker Website](https://hub.docker.com/editions/community/docker-ce-desktop-mac).
+   Use `$ brew cask install docker` or download from [Docker Website](https://hub.docker.com/editions/community/docker-ce-desktop-mac).
 
 
 __Install iTerm2 (optional)__
 
 Not required, but may make your life easier.
 
-`$ brew cask install iterm2` or download from [iTerm website](https://iterm2.com/downloads.html)
+   `$ brew cask install iterm2` or download from [iTerm website](https://iterm2.com/downloads.html)
 
 __Install Oh-My-Zsh for iTerm (optional)__
 
 This is reccomended, but probably not required. I won't gurantee using bash won't break something later. 
 
-`$ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
+   `$ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
 
 __Install Azure Data Studio__
 
-Run `$ brew cask install azure-data-studio` or download from [Microsoft](https://docs.microsoft.com/en-us/sql/azure-data-studio/download?view=sql-server-2017) or run `$ wget https://azuredatastudiobuilds.blob.core.windows.net/releases/1.4.5/azuredatastudio-macos-1.4.5.zip`.
+   Run `$ brew cask install azure-data-studio` or download from [Microsoft](https://docs.microsoft.com/en-us/sql/azure-data-studio/download?view=sql-server-2017) or run `$ wget https://azuredatastudiobuilds.blob.core.windows.net/releases/1.4.5/azuredatastudio-macos-1.4.5.zip`.
 
 __Look at the aliases I've created__
 
-In the `docker_aliases` file I've made some aliases, most notable are `dbash` and `dcpdb`. `dbash` opens a docker bash shell, and `dcpdb` copies the database dump in your external file system to your internal docker container so it can be used for import.
+   In the `docker_aliases` file I've made some aliases, most notable are `dbash` and `dcpdb`. `dbash` opens a docker bash shell, and `dcpdb` copies the database dump in your external file system to your internal docker container so it can be used for import.
 
 
 ## Instructions
@@ -46,13 +46,14 @@ In the `docker_aliases` file I've made some aliases, most notable are `dbash` an
 
 5. Change the SA (SQL Admin) password
 
-In your terminal run the following:
- `$ echo "$$MSSQL_SA_PASSWORD"` that gives you something the current admin password for the database. Using the output of this command, change the admin password to something more memorable.
+   In your terminal run the following:
+   
+   `$ echo "$$MSSQL_SA_PASSWORD"` that gives you something the current admin password for the database. Using the output of this command, change the admin password to something more memorable.
 
-```Bash
-   $ sudo docker exec -it tsql /opt/mssql-tools/bin/sqlcmd 
-    -S localhost -U SA -P 'output_of_echo_here' -Q 'ALTER LOGIN SA WITH PASSWORD=SA_PASSWORD="fooPass123!"'
-```
+   ```Bash
+      $ sudo docker exec -it tsql /opt/mssql-tools/bin/sqlcmd 
+       -S localhost -U SA -P 'output_of_echo_here' -Q 'ALTER LOGIN SA WITH PASSWORD=SA_PASSWORD="fooPass123!"'
+   ```
 
 6. Download the database dump
 
@@ -113,10 +114,10 @@ MOVE 'wwi_inmemory_data_1' to N'/var/opt/mssql/data/WWI_InMemory.ndf'
 It should take about 30 seconds for this to finish importing data.
 
 To verify that it succeeded run the following on the `WWI` database, and ensure there are 663 rows:
-```SQL
-   SELECT * 
-   FROM Sales.Customers
-```
+   ```SQL
+      SELECT * 
+      FROM Sales.Customers
+   ```
 
 TODO
 - find some way to export username and passwords out as shell variables and automagically call them
