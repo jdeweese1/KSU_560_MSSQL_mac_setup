@@ -92,7 +92,7 @@ In your terminal run the following:
    Change go to settings and change the setting "Enable Preview Features" to be on.
 
 10. Restore the database
-   In Azure Data Studio, go to open a new query tab, making sure you are on the `master` database. Make sure you copy the database file into the location `/var/opt/mssql/data/wwi.bak`. Execute the following query:
+   In Azure Data Studio, go to open a new query tab, making sure you are on the `master` database. Make sure you copy the database file into the location `/var/opt/mssql/data/wwi.bak`. Open the `import_query.SQL` file in Data Studio and execute or paste the following into the query window:
    
 ```SQL 
 RESTORE DATABASE [WWI] FROM DISK = N'/var/opt/mssql/data/wwi.bak'
