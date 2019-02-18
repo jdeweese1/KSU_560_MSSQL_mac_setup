@@ -38,12 +38,14 @@ In the `docker_aliases` file I've made some aliases, most notable are `dbash` an
    `$ git clone https://github.com/jdeweese1/KSU_560_MSSQL_mac_setup.git`
 
 3. Get docker up and running
+
    In the location of the repo run the following:
    `$ docker-compose run tsql_db`
 
    This may take a while the first time ~ 5 minutes depending on your internet connection
 
 5. Change the SA (SQL Admin) password
+
 In your terminal run the following:
  `$ echo "$$MSSQL_SA_PASSWORD"` that gives you something the current admin password for the database. Using the output of this command, change the admin password to something more memorable.
 
@@ -98,6 +100,7 @@ In your terminal run the following:
    Change go to settings and change the setting "Enable Preview Features" to be on.
 
 10. Restore the database
+
    In Azure Data Studio, go to open a new query tab, making sure you are on the `master` database. Make sure you copy the database file into the location `/var/opt/mssql/data/wwi.bak`. Open the `import_query.SQL` file in Data Studio and execute or paste the following into the query window:
    
 ```SQL 
