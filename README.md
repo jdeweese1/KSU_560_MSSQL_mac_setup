@@ -54,8 +54,8 @@ In your terminal run the following:
    ```Bash
    $ wget https://github.com/Microsoft/sql-server-samples/releases/download/wide-world-importers-v1.0/WideWorldImporters-Standard.bak
    $ mv WideWorldImporters-Standard.bak wwi.bak
-   $ source FFOO
-   $ docker cp wwi.bak tsql:/var/opt/mssql/data/wwi.bak
+   $ source docker_aliases
+   $ dcpdb
 
    ```
    
