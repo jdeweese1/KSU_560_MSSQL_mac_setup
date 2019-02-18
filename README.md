@@ -119,6 +119,10 @@ To verify that it succeeded run the following on the `WWI` database, and ensure 
       FROM Sales.Customers
    ```
 
+# Helpful resources
+[Kitematic](https://github.com/docker/kitematic) app for managing docker containers.
+[Docker cheat sheet](https://github.com/wsargent/docker-cheat-sheet)
+
 TODO
 - find some way to export username and passwords out as shell variables and automagically call them
    - direnv?
