@@ -64,20 +64,20 @@ In your terminal run the following:
    `$ docker container ls` 
    This gives you the name of the docker container, which may be helpful later.
 
-7. Enter the TSQL shell
+7. Create your own database user (optional)
    
-   In the bash shell inside the docker container, run the following to enter the interactive TSQL shell:
+   Enter the bash shell inside the docker container:
+   `$ dbash`
+   Now enter the following to enter the interactive TSQL shell:
 
    `$ /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'fooPass123!'`
    
    Now that you are in the TSQL shell run the following to create a non admin account for yourself run the following:
    
-   ```Bash
+   ```SQL
       CREATE LOGIN <username> WITH PASSWORD = 'fooPass123'
       GO
       ```
-      
-      FIXME
 
 9. Connect to database engine with Azure Data Studio.
 
@@ -87,8 +87,8 @@ In your terminal run the following:
 
    Open Azure Data Studio
    
-   Connect to 127.0.0.1
-   login with <username> 
+   Connect to address 127.0.0.1
+   Login with `some_user_name` and `some_password`
 
    Change go to settings and change the setting "Enable Preview Features" to be on.
 
