@@ -27,6 +27,11 @@ __Install Azure Data Studio__
 
 Run `$ brew cask install azure-data-studio` or download from [Microsoft](https://docs.microsoft.com/en-us/sql/azure-data-studio/download?view=sql-server-2017) or run `$ wget https://azuredatastudiobuilds.blob.core.windows.net/releases/1.4.5/azuredatastudio-macos-1.4.5.zip`.
 
+__Look at the aliases I've created__
+
+In the `docker_aliases` file I've made some aliases, most notable are `dbash` and `dcpdb`. `dbash` opens a docker bash shell, and `dcpdb` copies the database dump in your external file system to your internal docker container so it can be used for import.
+
+
 ## Instructions
 1. Clone this repo
 
@@ -114,3 +119,4 @@ TODO
 - find some way to export username and passwords out as shell variables and automagically call them
    - direnv?
 - make shell scripts to run the thing
+- find some way to get persistent database storage using volumes instead of having to reimport database
