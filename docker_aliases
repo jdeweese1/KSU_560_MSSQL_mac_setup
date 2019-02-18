@@ -1,3 +1,4 @@
 alias dcr='docker-compose run'
 alias dbash='dcr tsql_db bash'
 alias dcup='docker-compose up'
+alias dcpdb='docker cp wwi.bak tsql:/var/opt/mssql/data/wwi.bak'
