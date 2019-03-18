@@ -120,8 +120,9 @@ To verify that it succeeded run the following on the `WWI` database, and ensure 
    ```
 
 # Helpful resources
-[Kitematic](https://github.com/docker/kitematic) app for managing docker containers.
-[Docker cheat sheet](https://github.com/wsargent/docker-cheat-sheet)
+
+- [Kitematic](https://github.com/docker/kitematic): App for managing docker containers.
+- [Docker cheat sheet](https://github.com/wsargent/docker-cheat-sheet)
 
 
 
