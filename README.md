@@ -123,8 +123,10 @@ To verify that it succeeded run the following on the `WWI` database, and ensure 
 [Kitematic](https://github.com/docker/kitematic) app for managing docker containers.
 [Docker cheat sheet](https://github.com/wsargent/docker-cheat-sheet)
 
+< !--
 TODO
 - find some way to export username and passwords out as shell variables and automagically call them
    - direnv?
 - make shell scripts to run the thing
-- find some way to get persistent database storage using volumes instead of having to reimport database
+- find some way to get persistent database storage using volumes instead of having to reimport database 
+-->
